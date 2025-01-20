@@ -1,4 +1,4 @@
-name: wf-release-lbu
+name: wf-production-lbd
 on:
   pull_request:
     branches:
