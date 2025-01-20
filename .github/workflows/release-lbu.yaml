@@ -2,10 +2,10 @@ name: wf-release-lbu
 on:
   pull_request:
     branches:
-      - "release/**"  
+      - "release/*"  
   push:
     branches:
-      - "release/**"
+      - "release/*"
   workflow_dispatch: 
 jobs:
   rel-lint-job:
@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: chekcout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref}}
+      - name: Checkedout Branch
+        run: |
+          echo "________________________"
+          echo "${{github.ref}}"
+          echo "________________________"
       - name: Lint HTML and Stylelint
         run: |
           npx htmlhint "**/*.html"
