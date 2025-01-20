@@ -5,7 +5,7 @@ on:
       - develop
 jobs:
   dev-build-job:
-    runs-on: ubnutu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -15,8 +15,8 @@ jobs:
       - name: Upload GitHub Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: dev-artifact
-          path: ./dev 
+          name: "dev-artifact"
+          path: "./dev" 
   dev-deploy-job:
     needs: dev-build-job
     environment: development-env
@@ -28,6 +28,6 @@ jobs:
       - name: Deploy Website On Gihub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: dev-artifact
+          artifact_name: "dev-artifact"
           token: ${{github.token}}
 
