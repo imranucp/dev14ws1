@@ -19,12 +19,12 @@ jobs:
           npx stylelint "**/*.css"
       - name: Build With Parcel
         run: |
-          npx parcel build "./src/index.html"
+          npx parcel build "./src/index.html" --dist-dir "./rel"
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           name: release-artifact
-          path: "./release"
+          path: "./rel"
   rel-dep-job:
     needs: rel-lint-job
     environment: staging
