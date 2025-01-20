@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: chekcout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref}}
+      - name: Checked Out Branch???
+        run: |
+          echo "____________________"
+          echo "${{github.ref}}"
+          echo "____________________"
       - name: Lint HTML and Stylelint
         run: |
           npx htmlhint "**/*.html"
