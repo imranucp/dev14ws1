@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Website On Gihub Pages
-        uses: actions/upload-pages@v4
+        uses: actions/deploy-pages@v4
         with:
           artifact_name: dev-artifact
           token: ${{github.token}}
-          
+
