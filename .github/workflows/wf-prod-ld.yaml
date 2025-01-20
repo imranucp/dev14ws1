@@ -40,7 +40,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Upload To Staging Environment
+      - name: Upload To Production Environment
         uses: actions/deploy-pages@v4
         with:
           artifact_name: prod-artifact
