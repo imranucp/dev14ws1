@@ -2,7 +2,7 @@ name: wf-release-lbu
 on:
   pull_request:
     branches:
-      - prdo  
+      - prod  
   push:
     branches:
       - prod
