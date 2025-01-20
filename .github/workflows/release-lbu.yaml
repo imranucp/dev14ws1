@@ -38,8 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploye In Staging
-    #   - name: Upload To Staging Environment
-    #     uses: actions/deploy-pages@v4
-    #     with:
-    #       artifact_name: "release-artifact"
-    #       token: ${{github.token}}
+        run: echo "Going To Deploye In the Production Environment"
+      - name: Upload To Staging Environment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: "release-artifact"
+          token: ${{github.token}}
