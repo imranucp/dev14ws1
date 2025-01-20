@@ -2,10 +2,10 @@ name: wf-release-lbu
 on:
   pull_request:
     branches:
-      - release/**  
+      - "release/**"  
   push:
     branches:
-      - release/**
+      - "release/**"
   workflow_dispatch: 
 jobs:
   rel-lint-job:
@@ -19,7 +19,7 @@ jobs:
           npx stylelint "**/*.css"
       - name: Build With Parcel
         run: |
-          npx parcel build "./src/index.html" --dist-dir "./rel"
+          npx parcel build "./src/index.html" --dist-dir "./rel" --public-url "./"
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
