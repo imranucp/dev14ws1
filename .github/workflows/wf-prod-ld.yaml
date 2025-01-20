@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: chekcout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{github.ref}}
+      - name: Checked Out Branch???
+        run: |
+          echo "____________________"
+          echo "${{github.ref}}"
+          echo "____________________"
       - name: Lint HTML and Stylelint
         run: |
           npx htmlhint "**/*.html"
@@ -33,7 +40,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Upload To Staging Environment
+      - name: Upload To Production Environment
         uses: actions/deploy-pages@v4
         with:
           artifact_name: prod-artifact
