@@ -23,7 +23,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          name: release-artifact
+          name: "release-artifact"
           path: "./rel"
   rel-dep-job:
     needs: rel-lint-job
@@ -36,5 +36,5 @@ jobs:
       - name: Upload To Staging Environment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: release-artifact
+          artifact_name: "release-artifact"
           token: ${{github.token}}
