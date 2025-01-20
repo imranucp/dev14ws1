@@ -2,10 +2,10 @@ name: wf-release-lbu
 on:
   pull_request:
     branches:
-      - release/**  
+      - "release/**"  
   push:
     branches:
-      - release/**
+      - "release/**"
   workflow_dispatch: 
 jobs:
   rel-lint-job:
