@@ -1,0 +1,40 @@
+name: wf-release-lbu
+on:
+  pull_request:
+    branches:
+      - release/**  
+  push:
+    branches:
+      - release/**
+  workflow_dispatch: 
+jobs:
+  rel-lint-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: chekcout repository
+        uses: actions/checkout@v4
+      - name: Lint HTML and Stylelint
+        run: |
+          npx htmlhint "**/*.html"
+          npx stylelint "**/*.css"
+      - name: Build With Parcel
+        run: |
+          npx parcel build "./src/index.html"
+      - name: Upload Build Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: release-artifact
+          path: "./release"
+  rel-dep-job:
+    needs: rel-lint-job
+    environment: staging
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload To Staging Environment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: release-artifact
+          token: ${{github.token}}
