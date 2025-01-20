@@ -1,0 +1,32 @@
+name: wf-build-dev
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  dev-build-job:
+    runs-on: ubnutu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Build Website
+        run: |
+          npx parcel build "./src/index.html" --dist-dir "./dev" --public-url "./"
+      - name: Upload GitHub Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dev-artifact
+          path: ./dev 
+  dev-deploy-job:
+    needs: dev-build-job
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Website On Gihub Pages
+        uses: actions/upload-pages@v4
+        with:
+          artifact_name: dev-artifact
+          token: ${{github.token}}
+          
