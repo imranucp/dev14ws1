@@ -19,6 +19,7 @@ jobs:
           path: ./dev 
   dev-deploy-job:
     needs: dev-build-job
+    environment: development-env
     permissions:
       pages: write
       id-token: write
